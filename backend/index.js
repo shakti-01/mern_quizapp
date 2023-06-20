@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 //app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(bodyParser.json());
 
-//app.use("/api", require('./Routes/Auth'))
+app.use("/api", require('./Routes/Auth'))
 //app.use("/api", require('./Routes/Todo'))
 
 app.listen(port, () => {
