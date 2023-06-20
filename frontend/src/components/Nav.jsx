@@ -1,7 +1,7 @@
 import { Navbar, Button, Link, Text} from "@nextui-org/react";
 import { styled } from "@nextui-org/react";
 import React from 'react';
-import { Link as LinkR} from 'react-router-dom';
+import { Link as LinkR, useNavigate} from 'react-router-dom';
 
 
 const AcmeLogo = () => (
@@ -28,6 +28,12 @@ const Box = styled("div", {
 });
 
 export default function Nav() {
+  const logout = ()=>{
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("uname");
+    navigate("/");
+  }
+  const navigate = useNavigate();
   return (
     <Box css={{ maxW: "100%" }}>
       <Navbar isBordered variant="floating">
@@ -46,14 +52,28 @@ export default function Nav() {
           
         </Navbar.Content>
         <Navbar.Content>
-          <Navbar.Link color="inherit">
-          <LinkR to="/signin">Login</LinkR>
-          </Navbar.Link>
-          <Navbar.Item>
-            <Button auto flat as={Link}>
-                <LinkR to="/signup">Signup</LinkR>
-            </Button>
-          </Navbar.Item>
+          {(localStorage.getItem("authToken"))?
+          <>
+            <Navbar.Item color="secondary">
+              {localStorage.getItem("uname")}
+            </Navbar.Item>
+            <Navbar.Item>
+              <Button auto flat as={Link} onClick={logout}>
+                  Logout
+              </Button>
+            </Navbar.Item>
+          </>:
+          <>
+            <Navbar.Link color="inherit">
+              <LinkR to="/signin">Login</LinkR>
+            </Navbar.Link>
+            <Navbar.Item>
+              <Button auto flat as={Link}>
+                  <LinkR to="/signup">Signup</LinkR>
+              </Button>
+            </Navbar.Item>
+          </>}
+          
         </Navbar.Content>
         <Navbar.Collapse css={{ maxW: "40%" }}>
             <Navbar.CollapseItem key="home">

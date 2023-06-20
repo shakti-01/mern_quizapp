@@ -4,12 +4,25 @@ import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    const response = await fetch('http://localhost:5000/api/createuser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({  email: email, pass: password, uname:username })
+    });
+    const json = await response.json();
+    console.log(json);
+    if (!json.success) {
+        alert("Enter valid details of user");
+    }
+    else{ alert('Account has been created.\nPlease login to your account'); navigate("/signin");}
   };
 
   return (
@@ -31,13 +44,23 @@ const SignUpForm = () => {
         Create account ...
         </Text>
         <form onSubmit={handleSubmit}>
-        <Spacer y={1.5} />
+          <Spacer y={1.5} />
           <Input
             bordered 
             labelPlaceholder="username" 
             color="secondary"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <Spacer y={1.5} />
+          <Input
+            bordered 
+            labelPlaceholder="email" 
+            color="secondary"
+            type = "email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Spacer y={1.5} />

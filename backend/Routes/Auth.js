@@ -7,7 +7,7 @@ router.post("/createuser",
     async (req, res) => {
         try {
             
-            if(req.body.uname==="" || req.body.email==="" || req.body.pass==="" || req.body.pass.length<8){
+            if(req.body.uname==="" || req.body.email==="" || req.body.pass==="" || req.body.pass.length<5){
                 res.json({ success: false });
                 return;
             }
@@ -40,7 +40,7 @@ router.post("/loginuser",
             }
             const authToken = ud.id;
             console.log("user id:"+authToken);
-            res.status(200).json({success: true, authToken: authToken});
+            res.status(200).json({success: true, authToken: authToken,uname: ud.username});
         } catch (error) {
             res.json({ success: false });
             console.log(error);

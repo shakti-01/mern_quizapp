@@ -3,12 +3,29 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 const SignUpForm = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    const response = await fetch('http://localhost:5000/api/loginuser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({email: email, pass: password})
+    });
+    const res = await response.json();
+    //console.log(res);
+    
+    if (!res.success) {
+        alert("Enter valid details of your account");
+    }
+    else{
+        localStorage.setItem("authToken",res.authToken);
+        localStorage.setItem("uname",res.uname);
+        navigate("/");
+    }
   };
 
   return (
@@ -33,10 +50,10 @@ const SignUpForm = () => {
         <Spacer y={1.5} />
           <Input
             bordered 
-            labelPlaceholder="username" 
+            labelPlaceholder="email" 
             color="secondary"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Spacer y={1.5} />
