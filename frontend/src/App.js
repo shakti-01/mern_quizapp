@@ -4,6 +4,7 @@ import Home from './pages/Home/Home';
 import Signin from './pages/Auth/Signin';
 import Signup from './pages/Auth/Signup';
 import Quiz from './pages/Quiz/Quiz';
+import Leaderboard from './pages/Leaderboard/Leaderboard';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Route exact path='/signup' element={<Signup/>}></Route>
         <Route exact path='/signin' element={<Signin/>}></Route>
         <Route exact path='/quiz' element={<Quiz/>}></Route>
+        <Route exact path='/leaderboard' element={<Leaderboard/>}></Route>
+
       </Routes>
     </Router>
   );
