@@ -16,15 +16,22 @@ function Quiz() {
         body: JSON.stringify({quizname: localStorage.getItem("qname")})
     });
     const res=await response.json();
-    setQuestions(res.questions);
-    console.log(res.questions);
+    if(res.success){
+      setQuestions(res.questions);
+      console.log(res.questions);
+    }
+    else{
+      alert('err fetching questions of '+localStorage.getItem("qname"));
+    }
   }
   useEffect(() => {
     getQuestions();
   }, []);
   const save = ()=>{
     const currentQsn = questions.filter((item)=>(item.qno === qno));
-    if(localStorage.getItem("option") === currentQsn[0].answer);
+    if(localStorage.getItem("option") === currentQsn[0].answer){
+      localStorage.setItem("score",parseInt(localStorage.getItem("score"))+1);
+    }
     setQno(qno+1);
     localStorage.setItem("option","");
   }
