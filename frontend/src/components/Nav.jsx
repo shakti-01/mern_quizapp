@@ -2,6 +2,7 @@ import { Navbar, Button, Link, Text} from "@nextui-org/react";
 import { styled } from "@nextui-org/react";
 import React from 'react';
 import { Link as LinkR, useNavigate} from 'react-router-dom';
+import Darkmode from "./Darkmode";
 
 
 const AcmeLogo = () => (
@@ -52,6 +53,9 @@ export default function Nav() {
           
         </Navbar.Content>
         <Navbar.Content>
+          <Navbar.Item>
+            <Darkmode/>
+          </Navbar.Item>
           {(localStorage.getItem("authToken"))?
           <>
             <Navbar.Item color="secondary">

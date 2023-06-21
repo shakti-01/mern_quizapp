@@ -6,11 +6,34 @@ import Signup from './pages/Auth/Signup';
 import Quiz from './pages/Quiz/Quiz';
 import Leaderboard from './pages/Leaderboard/Leaderboard';
 import { Container } from '@mui/material';
+import { NextUIProvider, createTheme } from '@nextui-org/react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 function App() {
+  const lightTheme = createTheme({
+    type: 'light',
+    theme: {
+      
+    }
+  })
+  
+  const darkTheme = createTheme({
+    type: 'dark',
+    theme: {
+      
+    }
+  })
   return (
+    <NextThemesProvider
+    defaultTheme="light"
+    attribute="class"
+    value={{
+      light: lightTheme.className,
+      dark: darkTheme.className
+    }}
+  >
+    <NextUIProvider >
     <Container>
-
     <Router>
       <Routes>
         <Route exact path='/' element={<Home/>}></Route>
@@ -22,6 +45,8 @@ function App() {
       </Routes>
     </Router>
     </Container>
+    </NextUIProvider>
+    </NextThemesProvider>
   );
 }
 
