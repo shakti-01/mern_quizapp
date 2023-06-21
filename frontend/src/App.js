@@ -5,9 +5,12 @@ import Signin from './pages/Auth/Signin';
 import Signup from './pages/Auth/Signup';
 import Quiz from './pages/Quiz/Quiz';
 import Leaderboard from './pages/Leaderboard/Leaderboard';
+import { Container } from '@mui/material';
 
 function App() {
   return (
+    <Container>
+
     <Router>
       <Routes>
         <Route exact path='/' element={<Home/>}></Route>
@@ -18,6 +21,7 @@ function App() {
 
       </Routes>
     </Router>
+    </Container>
   );
 }
 

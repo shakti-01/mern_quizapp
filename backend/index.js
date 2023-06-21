@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 //app.use(bodyParser.json());
 
 app.use("/api", require('./Routes/Auth'))
-//app.use("/api", require('./Routes/Todo'))
+app.use("/api", require('./Routes/Quiz'))
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)

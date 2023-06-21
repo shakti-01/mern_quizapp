@@ -10,6 +10,7 @@ function Question(props) {
     const handleOptionChange = (value) => {
         setSelectedOption(value);
         console.log("selected op: "+selectedOption);
+        localStorage.setItem("option",value);
     };
   return (
     <Container fluid>
