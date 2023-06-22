@@ -1,7 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FeaturedPost from "../../components/FeaturedPost";
-import { Toolbar } from '@mui/material';
-import { makeStyles } from 'tss-react/mui';
 import Nav from '../../components/Nav';
 import Foot from '../../components/Foot';
 import { useNavigate } from 'react-router-dom';
@@ -34,6 +32,7 @@ function Home() {
     const signin = ()=>{
       navigate("/signin");
     }
+    useEffect(()=>{localStorage.setItem("activeitem",'home');},[])
   return (
     <div>
       <Nav/>
@@ -94,9 +93,9 @@ function Home() {
         }}
         weight="bold"
       >QUIZES</Text>
-      <Grid.Container gap={2} justify="center">
+      <Grid.Container gap={4} justify="center">
         <Grid xs={12} sm={6}>
-          <Card isPressable isHoverable variant="bordered" css={{ mw: "400px" }} onPress={startQuiz} data-name="Science" >
+          <Card isPressable isHoverable variant="bordered" css={{ mw: "500px" }} onPress={startQuiz} data-name="Science" >
             <Grid.Container gap={2}>
               <Grid xs={8}>
                 <div>
@@ -120,7 +119,7 @@ function Home() {
         </Grid>
 
         <Grid xs={12} sm={6}>
-          <Card isPressable isHoverable variant="bordered" css={{ mw: "400px" }} onPress={startQuiz} data-name="GK" >
+          <Card isPressable isHoverable variant="bordered" css={{ mw: "500px" }} onPress={startQuiz} data-name="GK" >
             <Grid.Container gap={2}>
               <Grid xs={8}>
                 <div>
@@ -144,7 +143,7 @@ function Home() {
         </Grid>
 
         <Grid xs={12} sm={6}>
-          <Card isPressable isHoverable variant="bordered" css={{ mw: "400px" }}>
+          <Card isPressable isHoverable variant="bordered" css={{ mw: "500px" }}>
             <Grid.Container gap={2}>
               <Grid xs={8}>
                 <div>
@@ -168,7 +167,7 @@ function Home() {
         </Grid>
 
         <Grid xs={12} sm={6}>
-          <Card isPressable isHoverable variant="bordered" css={{ mw: "400px" }} >
+          <Card isPressable isHoverable variant="bordered" css={{ mw: "500px" }} >
             <Grid.Container gap={2}>
               <Grid xs={8}>
                 <div>

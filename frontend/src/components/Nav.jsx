@@ -1,8 +1,9 @@
 import { Navbar, Button, Link, Text} from "@nextui-org/react";
 import { styled } from "@nextui-org/react";
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link as LinkR, useNavigate} from 'react-router-dom';
 import Darkmode from "./Darkmode";
+import { useState } from "react";
 
 
 const AcmeLogo = () => (
@@ -29,6 +30,10 @@ const Box = styled("div", {
 });
 
 export default function Nav() {
+
+  const handleNavItemClick = (navItem) => {
+    localStorage.setItem("activeitem",navItem);
+  };
   const logout = ()=>{
     localStorage.removeItem("authToken");
     localStorage.removeItem("uname");
@@ -46,8 +51,8 @@ export default function Nav() {
           </Text>
         </Navbar.Brand>
         <Navbar.Content enableCursorHighlight hideIn="xs" variant="underline">
-          <Navbar.Link isActive><LinkR to="/" >Home</LinkR></Navbar.Link>
-          <Navbar.Link >
+          <Navbar.Link isActive={localStorage.getItem("activeitem") === 'home'} onClick={() => handleNavItemClick('home')}><LinkR to="/" >Home</LinkR></Navbar.Link>
+          <Navbar.Link isActive={localStorage.getItem("activeitem") === 'lead'} onClick={() => handleNavItemClick('lead')}>
           <LinkR to="/leaderboard">Leaderboard</LinkR>
           </Navbar.Link>
           
@@ -58,11 +63,11 @@ export default function Nav() {
           </Navbar.Item>
           {(localStorage.getItem("authToken"))?
           <>
-            <Navbar.Item color="secondary">
-              {localStorage.getItem("uname")}
+            <Navbar.Item >
+                <Text color="secondary"> {localStorage.getItem("uname")}</Text>
             </Navbar.Item>
             <Navbar.Item>
-              <Button auto flat as={Link} onClick={logout}>
+              <Button auto flat as={Link} onClick={logout} color="secondary">
                   Logout
               </Button>
             </Navbar.Item>

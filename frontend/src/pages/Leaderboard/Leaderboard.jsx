@@ -45,6 +45,7 @@ export default function Leaderboard() {
       
       navigate("/signin");
     }
+    localStorage.setItem("activeitem",'lead');
     getResults();
   },[]);
   return (
