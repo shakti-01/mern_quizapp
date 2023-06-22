@@ -4,9 +4,13 @@ import Nav from '../../components/Nav';
 import Foot from '../../components/Foot';
 import { Container, Button, Text } from '@nextui-org/react';
 import Question from '../../components/Question';
+import { useNavigate } from 'react-router-dom';
+
+
 function Quiz() {
   const [questions,setQuestions] = useState([]);
   const [qno, setQno] = useState(1);
+  const navigate = useNavigate();
   const getQuestions = async()=>{
     const response = await fetch('http://localhost:5000/api/getquestions', {
         method: 'POST',
@@ -39,6 +43,13 @@ function Quiz() {
     setQno(qno+1);
     localStorage.setItem("option","");
   }
+  const result = ()=>{
+    const currentQsn = questions.filter((item)=>(item.qno === qno));
+    if(localStorage.getItem("option") === currentQsn[0].answer){
+      localStorage.setItem("score",parseInt(localStorage.getItem("score"))+1);
+    }
+    navigate("/result");
+  }
   return (
     <>
       <Nav/>
@@ -57,8 +68,17 @@ function Quiz() {
 
 
         <hr/>
-        <Button shadow color="success" auto style={{display:'inline-block'}} onClick={save}>Save and Next </Button>
-        <Button shadow color="warning" auto style={{display:'inline-block'}} onClick={next} > Next </Button>
+        {qno === 10 ? (
+          <>
+            <Button shadow color="success" auto style={{display:'inline-block'}} onClick={result}>Submit</Button>
+          </>
+        ) : (
+          <>
+            <Button shadow color="success" auto style={{display:'inline-block'}} onClick={save}>Save and Next</Button>
+            <Button shadow color="warning" auto style={{display:'inline-block'}} onClick={next}>Next</Button>
+          </>
+        )}
+        
       </Container>
       <Foot/>
     </>

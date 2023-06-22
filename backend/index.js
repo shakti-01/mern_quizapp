@@ -19,6 +19,8 @@ app.get('/', (req, res) => {
 
 app.use("/api", require('./Routes/Auth'))
 app.use("/api", require('./Routes/Quiz'))
+app.use("/api", require('./Routes/Result'))
+
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)

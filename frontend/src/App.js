@@ -4,6 +4,7 @@ import Home from './pages/Home/Home';
 import Signin from './pages/Auth/Signin';
 import Signup from './pages/Auth/Signup';
 import Quiz from './pages/Quiz/Quiz';
+import Result from './pages/Result/Result';
 import Leaderboard from './pages/Leaderboard/Leaderboard';
 import { Container } from '@mui/material';
 import { NextUIProvider, createTheme } from '@nextui-org/react';
@@ -41,7 +42,7 @@ function App() {
         <Route exact path='/signin' element={<Signin/>}></Route>
         <Route exact path='/quiz' element={<Quiz/>}></Route>
         <Route exact path='/leaderboard' element={<Leaderboard/>}></Route>
-
+        <Route exact path='/result' element={<Result/>}></Route>
       </Routes>
     </Router>
     </Container>

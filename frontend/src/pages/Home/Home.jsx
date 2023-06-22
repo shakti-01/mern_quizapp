@@ -5,37 +5,70 @@ import { makeStyles } from 'tss-react/mui';
 import Nav from '../../components/Nav';
 import Foot from '../../components/Foot';
 import { useNavigate } from 'react-router-dom';
-import { Card, Container, Text, Grid } from '@nextui-org/react';
-
-const useStyles = makeStyles()(() => {
-  return {
-      tagline:{
-          fontSize: 20,
-          textTransform:"uppercase",
-          justifyContent: "center",
-          fontFamily:"Segoe UI",
-      }, 
-  };
-});
+import { Card, Container, Text, Grid, Modal, Row, Button } from '@nextui-org/react';
 
 
 function Home() {
   const navigate = useNavigate();
     const startQuiz = (e)=>{
         if(e.target){
-          const qname = e.target.dataset.name;
-          console.log(qname);
-          localStorage.setItem("qname",qname);
-          localStorage.setItem("score",0);
-          localStorage.setItem("qno",1);
-          localStorage.setItem("option","");
-          navigate("/quiz");
+          if(!localStorage.getItem("authToken")){
+            setVisible(true);
+          }
+          else{
+            const qname = e.target.dataset.name;
+            console.log(qname);
+            localStorage.setItem("qname",qname);
+            localStorage.setItem("score",0);
+            localStorage.setItem("qno",1);
+            localStorage.setItem("option","");
+            navigate("/quiz");
+          }
         }
     }
-  const {classes} = useStyles();
+    const [visible, setVisible] = React.useState(false);
+    const closeHandler = () => {
+      setVisible(false);
+      console.log("closed");
+    };
+    const signin = ()=>{
+      navigate("/signin");
+    }
   return (
     <div>
       <Nav/>
+      <Modal
+        closeButton
+        blur
+        aria-labelledby="modal-title"
+        open={visible}
+        onClose={closeHandler}
+      >
+        <Modal.Header>
+          <Text id="modal-title" size={18}>
+            Welcome to <span>  </span>
+            <Text b size={18}>
+              QUIZER
+            </Text>
+          </Text>
+        </Modal.Header>
+        <Modal.Body>
+          <Text>
+            Please login to proceed. 
+          </Text>
+          <Row justify="space-between">
+            
+          </Row>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button auto flat color="error" onPress={closeHandler}>
+            Close
+          </Button>
+          <Button auto onPress={signin}>
+            Sign in
+          </Button>
+        </Modal.Footer>
+      </Modal>
       {/* <Button variant="contained" startIcon={<SendIcon />}>Hello World</Button> */}
       {/* <Container>
       <Toolbar className={classes.tagline}>ONLINE QUIZ</Toolbar>
@@ -50,9 +83,17 @@ function Home() {
             <PostCard title="Chemistry" description="Chemistry is the branch of science that deals with the properties, composition." image="https://i.pinimg.com/originals/22/72/2b/22722b33f4d7e9d810c6bce2fe678128.jpg" />
       </Grid>
       </Container> */}
-      <Container >
-      <Toolbar className={classes.tagline}>ONLINE QUIZ</Toolbar>
+      <Container css={{pt:"2rem"}}>
+      {/* <Toolbar className={classes.tagline}>ONLINE QUIZ</Toolbar> */}
+      
       <FeaturedPost />
+      <Text
+        h2 style={{textDecoration:"underline", textShadow:"12px 12px black black"}}
+        css={{
+          textGradient: "45deg, $blue600 -20%, $pink600 50%",pl:"4rem", ds:"$lg"
+        }}
+        weight="bold"
+      >QUIZES</Text>
       <Grid.Container gap={2} justify="center">
         <Grid xs={12} sm={6}>
           <Card isPressable isHoverable variant="bordered" css={{ mw: "400px" }} onPress={startQuiz} data-name="Science" >

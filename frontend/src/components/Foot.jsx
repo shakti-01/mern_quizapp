@@ -12,7 +12,7 @@ const Foot = () => {
       <Container paddingY={2}>
         <hr/>
         <Text >
-          © 2023 Your Company. All rights reserved.
+          © 2023 Quizer. All rights reserved.
           <br/>
           <Link href="#" color="secondary">
               
