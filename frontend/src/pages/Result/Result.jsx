@@ -56,7 +56,7 @@ function Result() {
             </Card>
             </div>
             <Spacer/>
-            <Text>Do you give us the permissioon to use add your name in our leaderboards</Text>
+            <Text>Do you give us the permission to use add your name in our leaderboards</Text>
             <Grid.Container gap={2}>
                 <Grid>
                         <Button auto color="secondary" rounded ghost onPress={addResult} >

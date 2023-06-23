@@ -20,11 +20,9 @@ const Foot = () => {
     Home
   </Link>
   <Link block color="secondary" href="#">
-    Home
+    Leaderboard
   </Link>
-  <Link block color="secondary" href="#">
-    Home
-  </Link>
+  
       </Grid>
       <Grid>
       <Link href="#" color="secondary">

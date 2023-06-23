@@ -1,6 +1,7 @@
 import { Container, Card, Input, Button, Text , Spacer, Link} from "@nextui-org/react";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import Nav from "../../components/Nav";
 const SignUpForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -29,6 +30,8 @@ const SignUpForm = () => {
   };
 
   return (
+    <>
+    <Nav/>
     <Container
       align="center"
       justify="center"
@@ -77,6 +80,7 @@ const SignUpForm = () => {
       </Card>
       
     </Container>
+    </>
   );
 };
 
