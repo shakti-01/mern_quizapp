@@ -47,7 +47,7 @@ const SignUpForm = () => {
           <Spacer y={1.5} />
           <Input
             bordered 
-            labelPlaceholder="username" 
+            labelPlaceholder="Name" 
             color="secondary"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -56,7 +56,7 @@ const SignUpForm = () => {
           <Spacer y={1.5} />
           <Input
             bordered 
-            labelPlaceholder="email" 
+            labelPlaceholder="E-mail" 
             color="secondary"
             type = "email"
             value={email}
@@ -64,16 +64,17 @@ const SignUpForm = () => {
             required
           />
           <Spacer y={1.5} />
-          <Input
+          <Input.Password
             bordered 
-            labelPlaceholder="password" 
+            labelPlaceholder="Password" 
             color="secondary"
             type="password"
             value={password}
+            helperText={"minimum 5 characters"}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Button type="submit" auto css={{m:'1rem'}}>
+          <Button type="submit" auto css={{m:'1rem',mt:"1.8rem"}}>
             Sign Up
           </Button>
         </form>

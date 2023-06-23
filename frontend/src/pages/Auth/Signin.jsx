@@ -39,6 +39,7 @@ const SignUpForm = () => {
          }}
       fluid
     >
+      
       <Card shadow style={{
         maxWidth:"50%",
         padding:"1rem"
@@ -57,7 +58,7 @@ const SignUpForm = () => {
             required
           />
           <Spacer y={1.5} />
-          <Input
+          <Input.Password
             bordered 
             labelPlaceholder="password" 
             color="secondary"
@@ -74,6 +75,7 @@ const SignUpForm = () => {
         Don't have  an account?
       </Link>
       </Card>
+      
     </Container>
   );
 };

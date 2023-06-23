@@ -60,22 +60,22 @@ function Quiz() {
         }}
         weight="bold"
       >Attempting quiz ...</Text>
-      <Container fluid>
+      <Container fluid style={{border:"0.1rem solid",padding:"1rem",borderRadius:"0.7rem",marginBottom:"1rem"}} css={{color:"$secondary"}}>
         
         {(questions).filter((item)=>{ return item.qno === qno}).map((ele)=>{return <>
           <Question item={ele}/>
         </>})}
 
 
-        <hr/>
+        
         {qno === 10 ? (
           <>
             <Button shadow color="success" auto style={{display:'inline-block'}} onClick={result}>Submit</Button>
           </>
         ) : (
           <>
-            <Button shadow color="success" auto style={{display:'inline-block'}} onClick={save}>Save and Next</Button>
-            <Button shadow color="warning" auto style={{display:'inline-block'}} onClick={next}>Next</Button>
+            <Button ghost color="success" auto style={{display:'inline-block',marginRight:"2rem"}} onClick={save}>Save and Next</Button>
+            <Button ghost color="secondary" auto style={{display:'inline-block'}} onClick={next}>Skip</Button>
           </>
         )}
         

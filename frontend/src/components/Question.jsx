@@ -1,4 +1,4 @@
-import { Container } from '@nextui-org/react'
+import { Container,Text } from '@nextui-org/react'
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Radio } from '@nextui-org/react';
@@ -16,13 +16,13 @@ function Question(props) {
       setSelectedOption(null);
     },[props]);
   return (
-    <Container fluid>
-        <p style={{fontSize:"1.5rem"}}>Question {props.item.qno}| {props.item.question}</p>
-        <Radio.Group value={selectedOption} onChange={handleOptionChange}>
-            <Radio value="op1">Option 1--| {props.item.op1}</Radio>
-            <Radio value="op2">Option 2--| {props.item.op2}</Radio>
-            <Radio value="op3">Option 3--| {props.item.op3}</Radio>
-            <Radio value="op4">Option 4--| {props.item.op4}</Radio>
+    <Container fluid css={{mb:"1rem"}}>
+        <Text blockquote style={{fontSize:"1.5rem"}}>Q {props.item.qno}. {props.item.question}</Text>
+        <Radio.Group value={selectedOption} onChange={handleOptionChange} >
+            <Radio value="op1" color="secondary" isSquared>A. {props.item.op1}</Radio>
+            <Radio value="op2" color="secondary" isSquared>B. {props.item.op2}</Radio>
+            <Radio value="op3" color="secondary" isSquared>C. {props.item.op3}</Radio>
+            <Radio value="op4" color="secondary" isSquared>D. {props.item.op4}</Radio>
         </Radio.Group>
     </Container>
   )
